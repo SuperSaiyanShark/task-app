@@ -16,16 +16,15 @@ auth()->user()->tasks()->create([
 ]);
 return redirect()->back();
 }
-public function update($id)
+public function update(Task $task)
 {
-$task = Task::findOrFail($id);
 $task->is_done = !$task->is_done;
 $task->save();
 return redirect()->back();
 }
-public function destroy($id)
+public function destroy(Task $task)
 {
-Task::destroy($id);
+$task->delete();
 return redirect()->back();
 }
 }
